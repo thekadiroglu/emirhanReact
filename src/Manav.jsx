@@ -39,64 +39,66 @@ const products = [
         id: 1,
     title: 'Melon',
     src: Melon,
-        price: 8
+        price: 8,
+        stock: 5
     },
     {
         id: 2,
       title: 'Strawberry',
       src: Strawberry,
-      price: 25
+        price: 25,
+        stock: 23
+      
     },
     {
         id: 3,
       title: 'Chery',
       src: Chery, 
-      price: 25
+        price: 25,
+        stock: 15
     },
     {
         id: 4,
       title: 'Peach',
       src: Peach,
-       price: 15
+        price: 15,
+        stock: 30
     },
     {
         id: 5,
         title: 'Orange',
       stock: 10,
       src: Orange,
-      price: 20
+        price: 20,
+        stock: 18
   },
   {
     id: 6,
       title: 'Grape',
     stock: 10,
     src: Grape,
-    price: 25
+      price: 25,
+      stock: 40
   }
-
 ];
-
-
 export default function Basket() {
     const [shoppingList, setShoppingList] = useState([]);
 
-    function removeProduct(product) {
-        const updatedList = shoppingList.filter((item) => item.id !== product.id);
-        setShoppingList(updatedList);
-    }
     
+    function removeProduct(productId) {
+        const updatedList = shoppingList.filter((item) => item.id !== productId);
+        setShoppingList(updatedList);
+      }
     function emptyProduct() {
         setShoppingList([]);
     }
+    
     function addToBasket(product) {
-        if(!shoppingList.includes(product)) {
-            setShoppingList([...shoppingList, product]);
-        }
+        setShoppingList([...shoppingList, { ...product, id: Date.now() }]);
     }
-
+   
     const total = shoppingList.reduce((acc, item) => acc + item.price, 0);
     return (
-
         <div className='basket'>
             <Header/>
             <h3 className='title'>Products</h3>
@@ -104,19 +106,16 @@ export default function Basket() {
         <h3 className='title'>Your Basket</h3>
             {
                 shoppingList.length > 0 ? 
-                    <ul className='box'>
-                        
+                    <ul className='box'>     
               {shoppingList.map(x => <div className='product'  key={x.id}>
                 <li>
                   <img id={x.id} src={x.src} alt="" />
-                  <h5 className='title'>{x.title}</h5>
+                      <h5 className='title'>{x.title}</h5>
                       <h5 className='title'>Price: {x.price} TL</h5>
-                      <button className='outBtn' id={x.id} onClick={() => removeProduct(x)}>Out -</button>
+                      <button className='outBtn' id={x.id} onClick={() => removeProduct(x.id)}>Out -</button>
                   </li>
-                  
               </div>)}
-              <button className='outBtn' onClick={emptyProduct}>Clear</button>
-              
+              <button className='outBtn' onClick={emptyProduct}>Clear</button>              
                 </ul> :
             <ul className='emptyBox'>
                         <div >
@@ -124,14 +123,13 @@ export default function Basket() {
                             <h3>Your cart is empty</h3>
               </div>
                 </ul>
-            }
-            
+            } 
             {shoppingList.map(y => <div key={y.id}>
                 <p>{y.total}</p>
                 
             </div>)}
-        <p>Basket Price: {total} TL</p>
-            <p>Ürün Toplamı: {shoppingList.length}</p>
+        <p className='inBox'>Basket Price: {total} TL</p>
+            <p className='inBox'>Ürün Toplamı: {shoppingList.length}</p>
         </div>
     );
 }

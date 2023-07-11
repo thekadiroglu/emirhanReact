@@ -152,6 +152,10 @@ img{
   border-radius: 10px;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+}
+.inBox{
+  color: #fffaf6;
 }
 .title{
   color: #000;
