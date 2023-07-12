@@ -20,7 +20,13 @@ function ProductItem({product, addToBasket}) {
         <div className='showCase'>
             <img className='smallPic' src={product.src} alt="" />
             <h4>{product.title}</h4>
-        <button className='addBox' onClick={handleClick}>Add To Basket +</button>
+            <p>{product.stock}</p>
+            {
+                product.stock > 0 ?
+                    <button className='addBox' onClick={handleClick}>Add To Basket +</button> :
+                    <button className='addBox'>Ürün Tükendi</button>
+        }
+        
         
         </div>
     );
@@ -30,6 +36,7 @@ function Products({addToBasket}) {
     return (
         <div className="products">
             {products.map(fruits => <ProductItem addToBasket={addToBasket} key={fruits.id} product={fruits} />)}
+            
         </div>
     );
 }
@@ -47,7 +54,7 @@ const products = [
       title: 'Strawberry',
       src: Strawberry,
         price: 25,
-        stock: 23
+        stock: 8
       
     },
     {
@@ -55,14 +62,14 @@ const products = [
       title: 'Chery',
       src: Chery, 
         price: 25,
-        stock: 15
+        stock: 3
     },
     {
         id: 4,
       title: 'Peach',
       src: Peach,
         price: 15,
-        stock: 30
+        stock: 5
     },
     {
         id: 5,
@@ -70,7 +77,7 @@ const products = [
       stock: 10,
       src: Orange,
         price: 20,
-        stock: 18
+        stock: 6
   },
   {
     id: 6,
@@ -78,7 +85,7 @@ const products = [
     stock: 10,
     src: Grape,
       price: 25,
-      stock: 40
+      stock: 10
   }
 ];
 export default function Basket() {
@@ -94,9 +101,14 @@ export default function Basket() {
     }
     
     function addToBasket(product) {
+        
+        if (product.stock < 1) {
+            return
+        }
+        product.stock--;
         setShoppingList([...shoppingList, { ...product, id: Date.now() }]);
     }
-   
+    
     const total = shoppingList.reduce((acc, item) => acc + item.price, 0);
     return (
         <div className='basket'>
