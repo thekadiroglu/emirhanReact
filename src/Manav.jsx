@@ -74,7 +74,6 @@ const products = [
     {
         id: 5,
         title: 'Orange',
-      stock: 10,
       src: Orange,
         price: 20,
         stock: 6
@@ -85,7 +84,7 @@ const products = [
     stock: 10,
     src: Grape,
       price: 25,
-      stock: 10
+      
   }
 ];
 export default function Basket() {
@@ -94,7 +93,9 @@ export default function Basket() {
     
     function removeProduct(productId) {
         const updatedList = shoppingList.filter((item) => item.id !== productId);
+        console.log(productId)
         setShoppingList(updatedList);
+
       }
     function emptyProduct() {
         setShoppingList([]);
@@ -108,7 +109,6 @@ export default function Basket() {
         product.stock--;
         setShoppingList([...shoppingList, { ...product, id: Date.now() }]);
     }
-    
     const total = shoppingList.reduce((acc, item) => acc + item.price, 0);
     return (
         <div className='basket'>

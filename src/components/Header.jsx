@@ -9,7 +9,9 @@ export default function Header() {
             <li>Home</li>
             <li>Contact</li>
             <li>About</li>
-        </ul>
+            </ul>
+            <h2>emirhan'ın mekanına hoşgeldiniz</h2>
+            <p>Şuan Tic-Tac-Toe oynamaktasınız</p>
         </div>
         )
 }

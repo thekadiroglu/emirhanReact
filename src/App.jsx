@@ -4,7 +4,7 @@ import './App.css'
 import TodoList from './Todolist'
 import Header from './components/Header'
 import Automation from './Manav'
-
+import TicTacToe from './tictactoe'
 
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
      
       <div>{todos.filter(todo => !todo.complete).length}  left to do</div>
      */}
-      <Automation/>
+      <TicTacToe/>
     </div> 
    
   )
