@@ -21,6 +21,7 @@ export default function TicTacToe() {
     useEffect(() => {
         if (result.state != "none") {
             alert(`Oyun Bitti Kazanan:${result.winner}`)
+            
         }
     }, [result])
     const chooseSquare = (square) => {
@@ -35,6 +36,10 @@ export default function TicTacToe() {
 
        
     }
+    function reloadPage()
+ {
+  window.location.reload()
+ }
     const checkWin = () => {
         Patterns.forEach((currPattern) => {
             const firstPlayer = board[currPattern[0]];
@@ -51,8 +56,10 @@ export default function TicTacToe() {
         })
     }
     return (
-        <div className='tic-tac-toe'>
+        <>
             <Header/>
+        <div className='tic-tac-toe'>
+            
             <div className="board">
                 <div className="row">
                     <Square val={board[0]} chooseSquare={() => { chooseSquare(0) }} />
@@ -69,10 +76,11 @@ export default function TicTacToe() {
                     <Square val={board[7]} chooseSquare={() => { chooseSquare(7) }}/>
                     <Square val={board[8]} chooseSquare={() => { chooseSquare(8) }}/>
                 </div>
-                
             </div>
+            <button className='refreshBtn' onClick={reloadPage}>Yeniden Başla</button>
             
-        </div>
+            </div>
+            </>
     )
 }
 
