@@ -1,5 +1,5 @@
 import React from "react";
-
+//burada kazanma ihtimallerini yazıyoruz bunlardan biri olursa oyuncu kazanıyor.
 export const Patterns = [
     [0, 1, 2],
     [3, 4, 5],

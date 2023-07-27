@@ -6,7 +6,7 @@ export default function TicTacToe() {
     const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({ winner: "none", state: "none" });
-
+//burada el değiştiriyor.
     useEffect(() => {
         checkWin();
 
@@ -17,13 +17,14 @@ export default function TicTacToe() {
             setPlayer("X")
         }
     }, [board]);
-
+//burada kazanan ekrana geliyor
     useEffect(() => {
         if (result.state != "none") {
             alert(`Oyun Bitti Kazanan:${result.winner}`)
             
         }
     }, [result])
+    //burada kutunun üsütne basıldığında ona değer atanmasını sağlıyor (X, O).
     const chooseSquare = (square) => {
         setBoard(board.map((val, idx) => {
             if (idx == square && val == "") {
@@ -36,13 +37,16 @@ export default function TicTacToe() {
 
        
     }
+    // sayfayı yeniden yükleme fonksiyonu.
     function reloadPage()
  {
   window.location.reload()
- }
+    }
+    //burada kazananı seçiyoz.
     const checkWin = () => {
         Patterns.forEach((currPattern) => {
             const firstPlayer = board[currPattern[0]];
+            //burada boş oynanmaması sağlanıyor
             if (firstPlayer == "") return;
             let foundWinningPattern = true
             currPattern.forEach((idx) => {
@@ -56,12 +60,13 @@ export default function TicTacToe() {
         })
     }
     return (
+        //buradaki val içinde belirttiğim numaralar patterns compenentindeki sayılar aslında. Choosesquare ise hangi değerin (x, O) geldiğini yolluyor.
         <>
             <Header/>
         <div className='tic-tac-toe'>
             
             <div className="board">
-                <div className="row">
+                <div className="row">               
                     <Square val={board[0]} chooseSquare={() => { chooseSquare(0) }} />
                     <Square val={board[1]} chooseSquare={() => { chooseSquare(1) }}/>
                     <Square val={board[2]} chooseSquare={() => { chooseSquare(2) }}/>
