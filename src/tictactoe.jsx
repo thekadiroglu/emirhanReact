@@ -83,7 +83,6 @@ export default function TicTacToe() {
                 </div>
             </div>
             <button className='refreshBtn' onClick={reloadPage}>Yeniden Başla</button>
-            
             </div>
             </>
     )
