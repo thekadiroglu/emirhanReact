@@ -5,7 +5,7 @@ import TodoList from './Todolist'
 import Header from './components/Header'
 import Automation from './Manav'
 import TicTacToe from './tictactoe'
-import emirhanReact from 'emirhanReact'; 
+
 
 function App() {
   const [todos, setTodos] = useState([])
